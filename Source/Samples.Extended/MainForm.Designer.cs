@@ -30,6 +30,7 @@
         {
             this.BitmapFontsButton = new System.Windows.Forms.Button();
             this.SpritesButton = new System.Windows.Forms.Button();
+            this.InputListenersButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BitmapFontsButton
@@ -52,11 +53,22 @@
             this.SpritesButton.UseVisualStyleBackColor = true;
             this.SpritesButton.Click += new System.EventHandler(this.SpritesButton_Click);
             // 
+            // InputListenersButton
+            // 
+            this.InputListenersButton.Location = new System.Drawing.Point(292, 12);
+            this.InputListenersButton.Name = "InputListenersButton";
+            this.InputListenersButton.Size = new System.Drawing.Size(134, 58);
+            this.InputListenersButton.TabIndex = 2;
+            this.InputListenersButton.Text = "Input Listeners";
+            this.InputListenersButton.UseVisualStyleBackColor = true;
+            this.InputListenersButton.Click += new System.EventHandler(this.InputListenersButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 304);
+            this.Controls.Add(this.InputListenersButton);
             this.Controls.Add(this.SpritesButton);
             this.Controls.Add(this.BitmapFontsButton);
             this.Name = "MainForm";
@@ -70,5 +82,6 @@
 
         private System.Windows.Forms.Button BitmapFontsButton;
         private System.Windows.Forms.Button SpritesButton;
+        private System.Windows.Forms.Button InputListenersButton;
     }
 }

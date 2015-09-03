@@ -25,5 +25,11 @@ namespace Samples.Extended
             Sample = new SpritesSample();
             DialogResult = DialogResult.OK;
         }
+
+        private void InputListenersButton_Click(object sender, EventArgs e)
+        {
+            Sample = new InputListenersSample();
+            DialogResult = DialogResult.OK;
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace Samples.Extended.Samples
 {
     public class BitmapFontsSample : Game
     {
+        // ReSharper disable once NotAccessedField.Local
         private GraphicsDeviceManager _graphicsDeviceManager;
         private SpriteBatch _spriteBatch;
         private BitmapFont _bitmapFont;
@@ -24,8 +25,9 @@ namespace Samples.Extended.Samples
         protected override void LoadContent()
         {
             _backgroundTexture = Content.Load<Texture2D>("vignette");
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
             _bitmapFont = Content.Load<BitmapFont>("montserrat-32");
+            
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
         protected override void UnloadContent()
