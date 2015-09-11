@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Samples\Camera2DSample.cs" />
     <Compile Include="Samples\InputListenersSample.cs" />
     <Compile Include="Samples\SpritesSample.cs" />
   </ItemGroup>
