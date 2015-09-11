@@ -93,7 +93,7 @@ namespace Samples.Extended.Samples
         {
         }
 
-        private bool _isCursorVisbile = true;
+        private bool _isCursorVisible = true;
         private const float _cursorBlinkDelay = 0.5f;
         private float _cursorBlinkDelta = _cursorBlinkDelay;
 
@@ -103,7 +103,7 @@ namespace Samples.Extended.Samples
 
             if (_cursorBlinkDelta <= 0)
             {
-                _isCursorVisbile = !_isCursorVisbile;
+                _isCursorVisible = !_isCursorVisible;
                 _cursorBlinkDelta = _cursorBlinkDelay;
             }
 
@@ -129,7 +129,7 @@ namespace Samples.Extended.Samples
 
             _spriteBatch.DrawString(_bitmapFont, _typedString, position, Color.White);
 
-            if(_isCursorVisbile)
+            if(_isCursorVisible)
                 _spriteBatch.DrawString(_bitmapFont, "_", new Vector2(stringRectangle.Width, textInputY), Color.White);
 
             _spriteBatch.End();
