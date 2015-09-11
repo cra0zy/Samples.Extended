@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing.Text;
+using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Samples.Extended.Samples;
@@ -10,26 +12,50 @@ namespace Samples.Extended
         public MainForm()
         {
             InitializeComponent();
+
+            // TODO: We could use reflection to populate this list automatically perhaps.
+            SampleListBox.Items.Add(new SampleMetadata("Bitmap Fonts", () => new BitmapFontsSample()));
+            SampleListBox.Items.Add(new SampleMetadata("Sprites", () => new SpritesSample()));
+            SampleListBox.Items.Add(new SampleMetadata("Input Listeners", () => new InputListenersSample()));
+            SampleListBox.Items.Add(new SampleMetadata("Camera2D", () => new Camera2DSample()));
+            
+            SampleListBox.SelectedIndex = 0;
         }
 
-        public Game Sample { get; private set; }
-
-        private void BitmapFontsButton_Click(object sender, EventArgs e)
+        private class SampleMetadata
         {
-            Sample = new BitmapFontsSample();
-            DialogResult = DialogResult.OK;
+            public SampleMetadata(string name, Func<Game> createSampleFunction)
+            {
+                Name = name;
+                CreateSampleFunction = createSampleFunction;
+            }
+
+            public string Name { get; private set; }
+            public Func<Game> CreateSampleFunction { get; private set; }
+
+            public override string ToString()
+            {
+                return Name;
+            }
         }
 
-        private void SpritesButton_Click(object sender, EventArgs e)
+        private Func<Game> _selectedSampleFunction; 
+
+        public Game CreateSample()
         {
-            Sample = new SpritesSample();
-            DialogResult = DialogResult.OK;
+            return _selectedSampleFunction();
         }
 
-        private void InputListenersButton_Click(object sender, EventArgs e)
+        private void LaunchButton_Click(object sender, EventArgs e)
         {
-            Sample = new InputListenersSample();
-            DialogResult = DialogResult.OK;
+            var sampleMetadata = SampleListBox.SelectedItem as SampleMetadata;
+
+            if (sampleMetadata != null)
+            {
+                _selectedSampleFunction = sampleMetadata.CreateSampleFunction;
+                DialogResult = DialogResult.OK;
+            }
         }
+
     }
 }

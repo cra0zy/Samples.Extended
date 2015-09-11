@@ -28,49 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BitmapFontsButton = new System.Windows.Forms.Button();
-            this.SpritesButton = new System.Windows.Forms.Button();
-            this.InputListenersButton = new System.Windows.Forms.Button();
+            this.SampleListBox = new System.Windows.Forms.ListBox();
+            this.LaunchButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // BitmapFontsButton
+            // SampleListBox
             // 
-            this.BitmapFontsButton.Location = new System.Drawing.Point(12, 12);
-            this.BitmapFontsButton.Name = "BitmapFontsButton";
-            this.BitmapFontsButton.Size = new System.Drawing.Size(134, 58);
-            this.BitmapFontsButton.TabIndex = 0;
-            this.BitmapFontsButton.Text = "Bitmap Fonts";
-            this.BitmapFontsButton.UseVisualStyleBackColor = true;
-            this.BitmapFontsButton.Click += new System.EventHandler(this.BitmapFontsButton_Click);
+            this.SampleListBox.FormattingEnabled = true;
+            this.SampleListBox.Location = new System.Drawing.Point(12, 11);
+            this.SampleListBox.Name = "SampleListBox";
+            this.SampleListBox.Size = new System.Drawing.Size(192, 277);
+            this.SampleListBox.TabIndex = 3;
             // 
-            // SpritesButton
+            // LaunchButton
             // 
-            this.SpritesButton.Location = new System.Drawing.Point(152, 12);
-            this.SpritesButton.Name = "SpritesButton";
-            this.SpritesButton.Size = new System.Drawing.Size(134, 58);
-            this.SpritesButton.TabIndex = 1;
-            this.SpritesButton.Text = "Sprites";
-            this.SpritesButton.UseVisualStyleBackColor = true;
-            this.SpritesButton.Click += new System.EventHandler(this.SpritesButton_Click);
-            // 
-            // InputListenersButton
-            // 
-            this.InputListenersButton.Location = new System.Drawing.Point(292, 12);
-            this.InputListenersButton.Name = "InputListenersButton";
-            this.InputListenersButton.Size = new System.Drawing.Size(134, 58);
-            this.InputListenersButton.TabIndex = 2;
-            this.InputListenersButton.Text = "Input Listeners";
-            this.InputListenersButton.UseVisualStyleBackColor = true;
-            this.InputListenersButton.Click += new System.EventHandler(this.InputListenersButton_Click);
+            this.LaunchButton.Location = new System.Drawing.Point(423, 237);
+            this.LaunchButton.Name = "LaunchButton";
+            this.LaunchButton.Size = new System.Drawing.Size(133, 51);
+            this.LaunchButton.TabIndex = 4;
+            this.LaunchButton.Text = "Launch";
+            this.LaunchButton.UseVisualStyleBackColor = true;
+            this.LaunchButton.Click += new System.EventHandler(this.LaunchButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 304);
-            this.Controls.Add(this.InputListenersButton);
-            this.Controls.Add(this.SpritesButton);
-            this.Controls.Add(this.BitmapFontsButton);
+            this.Controls.Add(this.LaunchButton);
+            this.Controls.Add(this.SampleListBox);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MonoGame.Extended Samples";
@@ -80,8 +66,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button BitmapFontsButton;
-        private System.Windows.Forms.Button SpritesButton;
-        private System.Windows.Forms.Button InputListenersButton;
+        private System.Windows.Forms.ListBox SampleListBox;
+        private System.Windows.Forms.Button LaunchButton;
     }
 }

@@ -14,7 +14,7 @@ namespace Samples.Extended
 
             while (dialogResult == DialogResult.OK)
             {
-                using (var game = form.Sample)
+                using (var game = form.CreateSample())
                     game.Run();
 
                 dialogResult = form.ShowDialog();
