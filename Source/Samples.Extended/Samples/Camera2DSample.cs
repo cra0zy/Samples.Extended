@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,7 +11,9 @@ namespace Samples.Extended.Samples
         private GraphicsDeviceManager _graphicsDeviceManager;
         private SpriteBatch _spriteBatch;
         private Camera2D _camera;
-        private Texture2D _backgroundTexture;
+        private Texture2D _backgroundSky;
+        private Texture2D _backgroundClouds;
+        private Texture2D[] _backgroundHills;
 
         public Camera2DSample()
         {
@@ -30,7 +31,14 @@ namespace Samples.Extended.Samples
 
         protected override void LoadContent()
         {
-            _backgroundTexture = Content.Load<Texture2D>("vignette");
+            _backgroundSky = Content.Load<Texture2D>("hills-sky");
+            _backgroundClouds = Content.Load<Texture2D>("hills-clouds");
+
+            _backgroundHills = new Texture2D[4];
+            _backgroundHills[0] = Content.Load<Texture2D>("hills-1");
+            _backgroundHills[1] = Content.Load<Texture2D>("hills-2");
+            _backgroundHills[2] = Content.Load<Texture2D>("hills-3");
+            _backgroundHills[3] = Content.Load<Texture2D>("hills-4");
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -68,9 +76,26 @@ namespace Samples.Extended.Samples
 
         protected override void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix());
-            _spriteBatch.Draw(_backgroundTexture, Vector2.Zero, Color.White);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            _spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix(Vector2.Zero));
+            _spriteBatch.Draw(_backgroundSky, Vector2.Zero, Color.White);
+            _spriteBatch.Draw(_backgroundClouds, Vector2.Zero, Color.White);
             _spriteBatch.End();
+
+            for (var layerIndex = 0; layerIndex < 4; layerIndex++)
+            {
+                var viewMatrix = _camera.GetViewMatrix(Vector2.One * (0.25f * layerIndex));
+                _spriteBatch.Begin(transformMatrix: viewMatrix);
+                
+                for (var repeatIndex = -3; repeatIndex <= 3; repeatIndex++)
+                {
+                    var position = new Vector2(repeatIndex * 800, 0);
+                    _spriteBatch.Draw(_backgroundHills[layerIndex], position, Color.White);
+                }
+
+                _spriteBatch.End();
+            }
 
             base.Draw(gameTime);
         }

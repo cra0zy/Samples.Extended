@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Drawing.Text;
-using System.Reflection;
+using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Samples.Extended.Samples;
@@ -14,11 +13,18 @@ namespace Samples.Extended
             InitializeComponent();
 
             // TODO: We could use reflection to populate this list automatically perhaps.
-            SampleListBox.Items.Add(new SampleMetadata("Bitmap Fonts", () => new BitmapFontsSample()));
-            SampleListBox.Items.Add(new SampleMetadata("Sprites", () => new SpritesSample()));
-            SampleListBox.Items.Add(new SampleMetadata("Input Listeners", () => new InputListenersSample()));
-            SampleListBox.Items.Add(new SampleMetadata("Camera2D", () => new Camera2DSample()));
-            
+            var samples = new []
+            {
+                new SampleMetadata("Bitmap Fonts", () => new BitmapFontsSample()),
+                new SampleMetadata("Sprites", () => new SpritesSample()),
+                new SampleMetadata("Input Listeners", () => new InputListenersSample()),
+                new SampleMetadata("Camera2D", () => new Camera2DSample())
+            }
+            .OrderBy(i => i.Name)
+            .ToArray();
+
+            // ReSharper disable once CoVariantArrayConversion
+            SampleListBox.Items.AddRange(samples);
             SampleListBox.SelectedIndex = 0;
         }
 
