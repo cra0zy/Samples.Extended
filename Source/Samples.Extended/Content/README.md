@@ -14,3 +14,13 @@ All of the content in these samples can be found free on the internet. This read
 
  - monterrat-32.fnt
  - monterrat-32_0.png
+
+### [Simple Hills Background](https://www.gamedevmarket.net/asset/simple-hills-background-1030/?ally=yJRl98tX)
+
+ - hills-1.png
+ - hills-2.png
+ - hills-3.png
+ - hills-4.png
+ - hills-clouds.png
+ - hills-sky.png
+
