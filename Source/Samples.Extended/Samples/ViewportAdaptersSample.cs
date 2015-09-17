@@ -17,6 +17,7 @@ namespace Samples.Extended.Samples
         private ScalingViewportAdapter _scalingViewportAdapter;
         private BoxingViewportAdapter _boxingViewportAdapter;
         private BitmapFont _bitmapFont;
+        private Point _mousePosition;
 
         public ViewportAdaptersSample()
         {
@@ -73,6 +74,7 @@ namespace Samples.Extended.Samples
         protected override void Update(GameTime gameTime)
         {
             var keyboardState = Keyboard.GetState();
+            var mouseState = Mouse.GetState();
             var previousViewportAdapter = _currentViewportAdapter;
 
             if (keyboardState.IsKeyDown(Keys.Escape))
@@ -94,6 +96,9 @@ namespace Samples.Extended.Samples
                 GraphicsDevice.Viewport = new Viewport(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height);
                 _currentViewportAdapter.OnClientSizeChanged();
             }
+
+            // the viewport adapters can also scale mouse and touch input to the virtual resolution
+            _mousePosition = _currentViewportAdapter.PointToScreen(mouseState.X, mouseState.Y);
 
             base.Update(gameTime);
         }
@@ -123,6 +128,9 @@ namespace Samples.Extended.Samples
 
             _spriteBatch.DrawString(_bitmapFont, @"Try resizing the window",
                     new Vector2(5, 5 + _bitmapFont.LineHeight * 6), Color.Black);
+
+            _spriteBatch.DrawString(_bitmapFont, string.Format("Mouse: {0}", _mousePosition),
+                new Vector2(5, 5 + _bitmapFont.LineHeight * 8), Color.Black);
 
             _spriteBatch.End();
 
