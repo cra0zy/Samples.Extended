@@ -52,6 +52,7 @@ namespace Samples.Extended.Samples
         private float _cloudsOffset;
         private BitmapFont _bitmapFont;
         private const float _cloudsRepeatWidth = 800;
+        private Vector2 _screenToWorldPosition;
 
         protected override void Update(GameTime gameTime)
         {
@@ -97,6 +98,8 @@ namespace Samples.Extended.Samples
             if (keyboardState.IsKeyDown(Keys.F))
                 _camera.Zoom -= zoomSpeed * deltaTime;
 
+            _screenToWorldPosition = _camera.ScreenToWorld(new Vector2(mouseState.X, mouseState.Y));
+
             base.Update(gameTime);
         }
 
@@ -131,10 +134,9 @@ namespace Samples.Extended.Samples
 
             // not all sprite batches need to be affected by the camera
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(_bitmapFont, 
-                "WASD: move\n" +
-                "RF: zoom in and out", 
-                new Vector2(5,5), Color.DarkBlue);
+            _spriteBatch.DrawString(_bitmapFont, "WASD: move\nRF: zoom in and out", new Vector2(5, 5), Color.DarkBlue);
+            _spriteBatch.DrawString(_bitmapFont, string.Format("ScreenToWorld: {0:0}, {1:0}", _screenToWorldPosition.X, _screenToWorldPosition.Y), 
+                new Vector2(5, 65), Color.DarkBlue);
             _spriteBatch.End();
 
             base.Draw(gameTime);
