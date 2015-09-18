@@ -42,6 +42,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Samples\TiledMapsSample.cs" />
     <Compile Include="Samples\BitmapFontsSample.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -76,10 +77,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\hills.png" />
+    <Content Include="Content\level01.tmx" />
     <None Include="Content\montserrat-32.fnt" />
     <None Include="Content\README.md" />
     <Content Include="Content\axe.png" />
     <Content Include="Content\bg_sharbi.png" />
+    <Content Include="Content\free-tileset.png" />
     <Content Include="Content\hills-1.png" />
     <Content Include="Content\hills-2.png" />
     <Content Include="Content\hills-3.png" />

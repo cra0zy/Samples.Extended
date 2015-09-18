@@ -19,7 +19,8 @@ namespace Samples.Extended
                 new SampleMetadata("Sprites", () => new SpritesSample()),
                 new SampleMetadata("Input Listeners", () => new InputListenersSample()),
                 new SampleMetadata("Camera2D", () => new Camera2DSample()),
-                new SampleMetadata("Viewport Adapters", () => new ViewportAdaptersSample())
+                new SampleMetadata("Viewport Adapters", () => new ViewportAdaptersSample()),
+                new SampleMetadata("Tiled Maps", () => new TiledMapsSample())
             }
             .OrderBy(i => i.Name)
             .ToArray();
