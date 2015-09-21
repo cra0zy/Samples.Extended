@@ -6,7 +6,7 @@ using MonoGame.Extended.ViewportAdapters;
 
 namespace Samples.Extended.Samples
 {
-    public class ViewportAdaptersSample : Game
+    public class ViewportAdaptersSample : SampleGame
     {
         // ReSharper disable once NotAccessedField.Local
         private GraphicsDeviceManager _graphicsDeviceManager;
@@ -19,19 +19,15 @@ namespace Samples.Extended.Samples
         private BitmapFont _bitmapFont;
         private Point _mousePosition;
 
-        public ViewportAdaptersSample()
+        public ViewportAdaptersSample(Game1 game) : base (game)
         {
-            _graphicsDeviceManager = new GraphicsDeviceManager(this)
-            {
-                // this sample sets the starting window to an unusual size to demonstrate the scaling behaviour
-                PreferredBackBufferWidth = 900,
-                PreferredBackBufferHeight = 700
-            };
+            MainGame.graphics.PreferredBackBufferWidth = 900;
+            MainGame.graphics.PreferredBackBufferHeight = 700;
 
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
-            Window.AllowUserResizing = true;
-            Window.Position = new Point(100, 100);
+            MainGame.Content.RootDirectory = "Content";
+            MainGame.IsMouseVisible = true;
+            MainGame.Window.AllowUserResizing = true;
+            MainGame.Window.Position = new Point(100, 100);
         }
 
         protected override void Initialize()
@@ -42,18 +38,18 @@ namespace Samples.Extended.Samples
             // but is used by a Camera2D if no other adapter is specified.
             // this is often useful if you have a game with a large map and you want the player to see 
             // more of the map on a bigger screen.
-            _defaultViewportAdapter = new DefaultViewportAdapter(GraphicsDevice);
+            _defaultViewportAdapter = new DefaultViewportAdapter(MainGame.GraphicsDevice);
 
             // the scaling viewport adapter stretches the output to fit in the viewport, ignoring the aspect ratio
             // this works well if the aspect ratio doesn't change a lot between devices 
             // or you don't like the black bars of the boxing adapter
-            _scalingViewportAdapter = new ScalingViewportAdapter(GraphicsDevice, 800, 480);
+            _scalingViewportAdapter = new ScalingViewportAdapter(MainGame.GraphicsDevice, 800, 480);
 
             // the boxing viewport adapter uses letterboxing or pillarboxing to maintain aspect ratio
             // it's a little more complicated and needs to listen to the window client size changing event
-            _boxingViewportAdapter = new BoxingViewportAdapter(GraphicsDevice, 800, 480);
+            _boxingViewportAdapter = new BoxingViewportAdapter(MainGame.GraphicsDevice, 800, 480);
 
-            Window.ClientSizeChanged += (s, e) => _currentViewportAdapter.OnClientSizeChanged(); 
+            MainGame.Window.ClientSizeChanged += (s, e) => _currentViewportAdapter.OnClientSizeChanged(); 
             
             // typically you'll only ever want to use one viewport adapter for a game, but in this sample we'll be 
             // switching between them.
@@ -62,9 +58,9 @@ namespace Samples.Extended.Samples
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _backgroundTexture = Content.Load<Texture2D>("vignette");
-            _bitmapFont = Content.Load<BitmapFont>("montserrat-32");
+            _spriteBatch = new SpriteBatch(MainGame.GraphicsDevice);
+            _backgroundTexture = MainGame.Content.Load<Texture2D>("vignette");
+            _bitmapFont = MainGame.Content.Load<BitmapFont>("montserrat-32");
         }
 
         protected override void UnloadContent()
@@ -93,7 +89,7 @@ namespace Samples.Extended.Samples
             // this wouldn't normally be required if you're only ever using one viewport adapter
             if (previousViewportAdapter != _currentViewportAdapter)
             {
-                GraphicsDevice.Viewport = new Viewport(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height);
+                MainGame.GraphicsDevice.Viewport = new Viewport(0, 0, MainGame.Window.ClientBounds.Width, MainGame.Window.ClientBounds.Height);
                 _currentViewportAdapter.OnClientSizeChanged();
             }
 
@@ -105,7 +101,7 @@ namespace Samples.Extended.Samples
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            MainGame.GraphicsDevice.Clear(Color.Black);
 
             // when rendering sprites, you'll always work within the bounds of the virtual width and height
             // specified when setting up the viewport adapter. The default MonoGame window is 800x480.
