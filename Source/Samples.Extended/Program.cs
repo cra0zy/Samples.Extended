@@ -1,16 +1,25 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace Samples.Extended
 {
+#if WINDOWS || LINUX
     public static class Program
     {
-        private static Game1 game;
-
-        public static void Main()
+        [STAThread]
+        static void Main()
         {
-            game = new Game1();
-            game.Run();
+            var form = new MainForm();
+            var dialogResult = form.ShowDialog();
+
+            while (dialogResult == DialogResult.OK)
+            {
+                using (var game = form.CreateSample())
+                    game.Run();
+
+                dialogResult = form.ShowDialog();
+            }
         }
     }
+#endif
 }
-

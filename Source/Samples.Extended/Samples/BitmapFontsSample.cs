@@ -1,32 +1,33 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using MonoGame.Extended.BitmapFonts;
 
 namespace Samples.Extended.Samples
 {
-    public class BitmapFontsSample : SampleGame
+    public class BitmapFontsSample : Game
     {
         // ReSharper disable once NotAccessedField.Local
+        private GraphicsDeviceManager _graphicsDeviceManager;
         private SpriteBatch _spriteBatch;
         private BitmapFont _bitmapFont;
         private Texture2D _backgroundTexture;
-        private string _labelText = "";
-        private Vector2 _labelPosition = Vector2.Zero;
+        private string _labelText;
+        private Vector2 _labelPosition;
 
-        public BitmapFontsSample(Game1 game) : base(game)
+        public BitmapFontsSample()
         {
-            MainGame.Content.RootDirectory = "Content";
-            MainGame.IsMouseVisible = true;
+            _graphicsDeviceManager = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+            IsMouseVisible = true;
         }
 
         protected override void LoadContent()
         {
-            _backgroundTexture = MainGame.Content.Load<Texture2D>("vignette");
-            _bitmapFont = MainGame.Content.Load<BitmapFont>("montserrat-32");
+            _backgroundTexture = Content.Load<Texture2D>("vignette");
+            _bitmapFont = Content.Load<BitmapFont>("montserrat-32");
             
-            _spriteBatch = new SpriteBatch(MainGame.GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
         protected override void UnloadContent()
@@ -50,10 +51,10 @@ namespace Samples.Extended.Samples
 
         protected override void Draw(GameTime gameTime)
         {
-            MainGame.GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, MainGame.GraphicsDevice.Viewport.Width, MainGame.GraphicsDevice.Viewport.Height), Color.White);
+            _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
             _spriteBatch.DrawString(_bitmapFont, "MonoGame.Extended BitmapFont Sample", new Vector2(50, 10), Color.White);
             _spriteBatch.DrawString(_bitmapFont,
                 "Contrary to popular belief, Lorem Ipsum is not simply random text.\n\n" +
