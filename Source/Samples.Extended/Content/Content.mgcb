@@ -1,9 +1,9 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:bin/Windows
-/intermediateDir:obj/Windows
-/platform:Windows
+/outputDir:bin
+/intermediateDir:obj
+/platform:DesktopGL
 /config:
 /profile:Reach
 /compress:False
