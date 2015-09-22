@@ -8,27 +8,29 @@ using MonoGame.Extended.ViewportAdapters;
 
 namespace Samples.Extended.Samples
 {
-    public class TiledMapsSample : SampleGame
+    public class TiledMapsSample : Game
     {
         // ReSharper disable once NotAccessedField.Local
+        private GraphicsDeviceManager _graphicsDeviceManager;
         private SpriteBatch _spriteBatch;
         private BitmapFont _bitmapFont;
         private TiledMap _tiledMap;
         private Camera2D _camera;
         
-        public TiledMapsSample(Game1 game) : base (game)
+        public TiledMapsSample()
         {
-            MainGame.Content.RootDirectory = "Content";
-            MainGame.IsMouseVisible = true;
+            _graphicsDeviceManager = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+            IsMouseVisible = true;
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(MainGame.GraphicsDevice);
-            _bitmapFont = MainGame.Content.Load<BitmapFont>("montserrat-32");
-            _tiledMap = MainGame.Content.Load<TiledMap>("level01");
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _bitmapFont = Content.Load<BitmapFont>("montserrat-32");
+            _tiledMap = Content.Load<TiledMap>("level01");
 
-            var viewportAdapter = new ScalingViewportAdapter(MainGame.GraphicsDevice, 800, 480);
+            var viewportAdapter = new ScalingViewportAdapter(GraphicsDevice, 800, 480);
             _camera = new Camera2D(viewportAdapter)
             {
                 Zoom = 0.5f,
@@ -74,7 +76,7 @@ namespace Samples.Extended.Samples
 
         protected override void Draw(GameTime gameTime)
         {
-            MainGame.GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // you can either draw the entire map in one go
             //_tiledMap.Draw(_camera);

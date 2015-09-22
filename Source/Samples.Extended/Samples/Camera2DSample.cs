@@ -6,41 +6,43 @@ using MonoGame.Extended.BitmapFonts;
 
 namespace Samples.Extended.Samples
 {
-    public class Camera2DSample : SampleGame
+    public class Camera2DSample : Game
     {
         // ReSharper disable once NotAccessedField.Local
+        private GraphicsDeviceManager _graphicsDeviceManager;
         private SpriteBatch _spriteBatch;
         private Camera2D _camera;
         private Texture2D _backgroundSky;
         private Texture2D _backgroundClouds;
         private Texture2D[] _backgroundHills;
 
-        public Camera2DSample(Game1 game) : base(game)
+        public Camera2DSample()
         {
-            MainGame.Content.RootDirectory = "Content";
-            MainGame.IsMouseVisible = true;
+            _graphicsDeviceManager = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+            IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
             base.Initialize();
 
-            _camera = new Camera2D(MainGame.GraphicsDevice);
+            _camera = new Camera2D(GraphicsDevice);
         }
 
         protected override void LoadContent()
         {
-            _bitmapFont = MainGame.Content.Load<BitmapFont>("montserrat-32");
-            _backgroundSky = MainGame.Content.Load<Texture2D>("hills-sky");
-            _backgroundClouds = MainGame.Content.Load<Texture2D>("hills-clouds");
+            _bitmapFont = Content.Load<BitmapFont>("montserrat-32");
+            _backgroundSky = Content.Load<Texture2D>("hills-sky");
+            _backgroundClouds = Content.Load<Texture2D>("hills-clouds");
 
             _backgroundHills = new Texture2D[4];
-            _backgroundHills[0] = MainGame.Content.Load<Texture2D>("hills-1");
-            _backgroundHills[1] = MainGame.Content.Load<Texture2D>("hills-2");
-            _backgroundHills[2] = MainGame.Content.Load<Texture2D>("hills-3");
-            _backgroundHills[3] = MainGame.Content.Load<Texture2D>("hills-4");
+            _backgroundHills[0] = Content.Load<Texture2D>("hills-1");
+            _backgroundHills[1] = Content.Load<Texture2D>("hills-2");
+            _backgroundHills[2] = Content.Load<Texture2D>("hills-3");
+            _backgroundHills[3] = Content.Load<Texture2D>("hills-4");
 
-            _spriteBatch = new SpriteBatch(MainGame.GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
         protected override void UnloadContent()
@@ -103,7 +105,7 @@ namespace Samples.Extended.Samples
 
         protected override void Draw(GameTime gameTime)
         {
-            MainGame.GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // the camera produces a view matrix that can be applied to any sprite batch
             var transformMatrix = _camera.GetViewMatrix(Vector2.Zero);

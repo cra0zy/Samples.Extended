@@ -8,9 +8,10 @@ using MonoGame.Extended.InputListeners;
 
 namespace Samples.Extended.Samples
 {
-    public class InputListenersSample : SampleGame
+    public class InputListenersSample : Game
     {
         // ReSharper disable once NotAccessedField.Local
+        private GraphicsDeviceManager _graphicsDeviceManager;
         private SpriteBatch _spriteBatch;
         private Texture2D _backgroundTexture;
         private BitmapFont _bitmapFont;
@@ -18,10 +19,11 @@ namespace Samples.Extended.Samples
         private string _typedString = string.Empty;
         private readonly List<string> _logLines = new List<string>();
 
-        public InputListenersSample(Game1 game) : base (game)
+        public InputListenersSample()
         {
-            MainGame.Content.RootDirectory = "Content";
-            MainGame.IsMouseVisible = true;
+            _graphicsDeviceManager = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+            IsMouseVisible = true;
         }
 
         protected override void Initialize()
@@ -81,10 +83,10 @@ namespace Samples.Extended.Samples
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(MainGame.GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _backgroundTexture = MainGame.Content.Load<Texture2D>("vignette");
-            _bitmapFont = MainGame.Content.Load<BitmapFont>("montserrat-32");
+            _backgroundTexture = Content.Load<Texture2D>("vignette");
+            _bitmapFont = Content.Load<BitmapFont>("montserrat-32");
         }
 
         protected override void UnloadContent()
@@ -113,7 +115,7 @@ namespace Samples.Extended.Samples
         protected override void Draw(GameTime gameTime)
         {
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-            _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, MainGame.GraphicsDevice.Viewport.Width, MainGame.GraphicsDevice.Viewport.Height), Color.DarkSlateGray);
+            _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.DarkSlateGray);
 
             for (var i = 0; i < _logLines.Count; i++)
             {

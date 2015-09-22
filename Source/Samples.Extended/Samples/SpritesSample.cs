@@ -6,9 +6,10 @@ using MonoGame.Extended.Sprites;
 
 namespace Samples.Extended.Samples
 {
-    public class SpritesSample : SampleGame
+    public class SpritesSample : Game
     {
         // ReSharper disable once NotAccessedField.Local
+        private GraphicsDeviceManager _graphicsDeviceManager;
         private SpriteBatch _spriteBatch;
         private Texture2D _backgroundTexture;
         private Sprite _axeSprite;
@@ -17,24 +18,25 @@ namespace Samples.Extended.Samples
         private Sprite _particleSprite1;
         private float _particleOpacity;
 
-        public SpritesSample(Game1 game) : base (game)
+        public SpritesSample()
         {
-            MainGame.Content.RootDirectory = "Content";
+            _graphicsDeviceManager = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(MainGame.GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _backgroundTexture = MainGame.Content.Load<Texture2D>("bg_sharbi");
+            _backgroundTexture = Content.Load<Texture2D>("bg_sharbi");
 
-            var axeTexture = MainGame.Content.Load<Texture2D>("axe");
+            var axeTexture = Content.Load<Texture2D>("axe");
             _axeSprite = new Sprite(axeTexture) { Origin = new Vector2(243, 679), Position = new Vector2(400, 0), Scale = Vector2.One * 0.5f };
 
-            var spikeyBallTexture = MainGame.Content.Load<Texture2D>("spike_ball");
+            var spikeyBallTexture = Content.Load<Texture2D>("spike_ball");
             _spikeyBallSprite = new Sprite(spikeyBallTexture) { Position = new Vector2(400, 340) };
 
-            var particleTexture = MainGame.Content.Load<Texture2D>("particle");
+            var particleTexture = Content.Load<Texture2D>("particle");
             _particleSprite0 = new Sprite(particleTexture) { Position = new Vector2(600, 340) };
             _particleSprite1 = new Sprite(particleTexture) { Position = new Vector2(200, 340) };
             _particleOpacity = 0.0f;
@@ -69,7 +71,7 @@ namespace Samples.Extended.Samples
         protected override void Draw(GameTime gameTime)
         {
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-            _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, MainGame.GraphicsDevice.Viewport.Width, MainGame.GraphicsDevice.Viewport.Height), Color.White);
+            _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
             _spriteBatch.Draw(_axeSprite);
             _spriteBatch.Draw(_spikeyBallSprite);
             _spriteBatch.Draw(_particleSprite0);
