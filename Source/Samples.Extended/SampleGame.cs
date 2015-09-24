@@ -8,6 +8,16 @@ namespace Samples.Extended
     {
         public Game1 MainGame;
 
+        public ContentManager Content { get { return MainGame.Content; } }
+        public GraphicsDevice GraphicsDevice { get { return MainGame.GraphicsDevice; } }
+        public GameWindow Window { get { return MainGame.Window; } }
+
+        public bool IsMouseVisible
+        {
+            get { return MainGame.IsMouseVisible; }
+            set { MainGame.IsMouseVisible = value; }
+        }
+
         public SampleGame(Game1 game)
         {
             MainGame = game;
@@ -21,7 +31,7 @@ namespace Samples.Extended
             UnloadContent();
         }
 
-        public void LoadStuff()
+        public void OnLoad()
         {
             Initialize();
             MainGame.graphics.ApplyChanges();
@@ -29,12 +39,12 @@ namespace Samples.Extended
             LoadContent();
         }
 
-        public void UpdateStuff(GameTime gameTime)
+        public void OnUpdate(GameTime gameTime)
         {
             Update(gameTime);
         }
 
-        public void DrawStuff(GameTime gameTime)
+        public void OnDraw(GameTime gameTime)
         {
             Draw(gameTime);
         }

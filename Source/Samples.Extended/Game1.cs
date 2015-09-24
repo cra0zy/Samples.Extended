@@ -68,7 +68,7 @@ namespace Samples.Extended
         {
             if (currentGame != null)
             {
-                currentGame.UpdateStuff(gameTime);
+                currentGame.OnUpdate(gameTime);
                 return;
             }
 
@@ -88,11 +88,10 @@ namespace Samples.Extended
             }
             else if (keyboardState.IsKeyDown(Keys.Enter) && !_prevKeyboardState.IsKeyDown(Keys.Enter))
             {
-                var gm = _samples[_selected].CreateSampleFunction();
-                IsMouseVisible = false;
-                gm.LoadStuff();
+                var tmpGame = _samples[_selected].CreateSampleFunction();
+                tmpGame.OnLoad();
 
-                currentGame = gm;
+                currentGame = tmpGame;
             }
 
             _prevKeyboardState = keyboardState;
@@ -103,7 +102,7 @@ namespace Samples.Extended
         {
             if (currentGame != null)
             {
-                currentGame.DrawStuff(gameTime);
+                currentGame.OnDraw(gameTime);
                 return;
             }
 

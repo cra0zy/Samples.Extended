@@ -20,6 +20,7 @@ namespace Samples.Extended.Samples
         public SpritesSample(Game1 game) : base (game)
         {
             MainGame.Content.RootDirectory = "Content";
+            MainGame.IsMouseVisible = false;
         }
 
         protected override void LoadContent()

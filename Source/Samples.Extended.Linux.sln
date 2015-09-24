@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Extended", "Samples.Extended\Samples.Extended.csproj", "{FD190BF5-B90D-4371-BDC7-B910C7DFBBF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Extended", "Samples.Extended\Samples.Extended.Linux.csproj", "{FD190BF5-B90D-4371-BDC7-B910C7DFBBF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
