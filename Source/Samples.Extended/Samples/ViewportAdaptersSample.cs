@@ -9,7 +9,8 @@ namespace Samples.Extended.Samples
     public class ViewportAdaptersSample : SampleGame
     {
         // ReSharper disable once NotAccessedField.Local
-        private GraphicsDeviceManager _graphicsDeviceManager;
+        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
+        private readonly GraphicsDeviceManager _graphicsDeviceManager;
         private SpriteBatch _spriteBatch;
         private Texture2D _backgroundTexture;
         private ViewportAdapter _currentViewportAdapter;
@@ -21,7 +22,7 @@ namespace Samples.Extended.Samples
 
         public ViewportAdaptersSample(Game1 game) : base (game)
         {
-            _graphicsDeviceManager = MainGame.graphics;
+            _graphicsDeviceManager = game.GraphicsDeviceManager;
 
             _graphicsDeviceManager.PreferredBackBufferWidth = 900;
             _graphicsDeviceManager.PreferredBackBufferHeight = 700;

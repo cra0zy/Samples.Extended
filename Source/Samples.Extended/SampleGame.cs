@@ -6,35 +6,33 @@ namespace Samples.Extended
 {
     public class SampleGame
     {
-        public Game1 MainGame;
+        public SampleGame(Game1 game)
+        {
+            _mainGame = game;
+        }
 
-        public ContentManager Content { get { return MainGame.Content; } }
-        public GraphicsDevice GraphicsDevice { get { return MainGame.GraphicsDevice; } }
-        public GameWindow Window { get { return MainGame.Window; } }
+        private readonly Game1 _mainGame;
+
+        public ContentManager Content { get { return _mainGame.Content; } }
+        public GraphicsDevice GraphicsDevice { get { return _mainGame.GraphicsDevice; } }
+        public GameWindow Window { get { return _mainGame.Window; } }
 
         public bool IsMouseVisible
         {
-            get { return MainGame.IsMouseVisible; }
-            set { MainGame.IsMouseVisible = value; }
-        }
-
-        public SampleGame(Game1 game)
-        {
-            MainGame = game;
+            get { return _mainGame.IsMouseVisible; }
+            set { _mainGame.IsMouseVisible = value; }
         }
 
         public void Exit()
         {
-            MainGame.currentGame = null;
-            MainGame.LoadDefaults();
-
+            _mainGame.Reset();
             UnloadContent();
         }
 
         public void OnLoad()
         {
             Initialize();
-            MainGame.graphics.ApplyChanges();
+            _mainGame.GraphicsDeviceManager.ApplyChanges();
 
             LoadContent();
         }

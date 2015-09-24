@@ -1,51 +1,52 @@
 ﻿using System;
 using System.Linq;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using MonoGame.Extended.BitmapFonts;
-
 using Samples.Extended.Samples;
 
 namespace Samples.Extended
 {
     public class Game1 : Game
     {
-        public SampleGame currentGame;
-        public GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-
-        BitmapFont _bitmapFont;
-        SampleMetadata[] _samples;
-        int _selected;
-        KeyboardState _prevKeyboardState;
-
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            GraphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
             LoadDefaults();
         }
 
-        public void LoadDefaults()
+        private SpriteBatch _spriteBatch;
+        private BitmapFont _bitmapFont;
+        private SampleMetadata[] _samples;
+        private int _selectedIndex;
+        private KeyboardState _previousKeyboardState;
+
+        public SampleGame CurrentSample { get; private set; }
+        public GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
+
+        public void Reset()
+        {
+            CurrentSample = null;
+            LoadDefaults();
+        }
+
+        private void LoadDefaults()
         {
             Window.Title = "MonoGame.Extended Samples";
             Window.Icon = new System.Drawing.Icon("Icon.ico");
             Window.AllowUserResizing = false;
             IsMouseVisible = true;
 
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 480;
-
-            graphics.ApplyChanges();
+            GraphicsDeviceManager.PreferredBackBufferWidth = 800;
+            GraphicsDeviceManager.PreferredBackBufferHeight = 480;
+            GraphicsDeviceManager.ApplyChanges();
         }
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _bitmapFont = Content.Load<BitmapFont>("montserrat-32");
 
@@ -61,66 +62,67 @@ namespace Samples.Extended
                 .OrderBy(i => i.Name)
                 .ToArray();
 
-            _selected = 0;
+            _selectedIndex = 0;
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (currentGame != null)
+            if (CurrentSample != null)
             {
-                currentGame.OnUpdate(gameTime);
+                CurrentSample.OnUpdate(gameTime);
                 return;
             }
 
             var keyboardState = Keyboard.GetState();
 
-            if (keyboardState.IsKeyDown(Keys.Down) && !_prevKeyboardState.IsKeyDown(Keys.Down))
+            if (keyboardState.IsKeyDown(Keys.Down) && !_previousKeyboardState.IsKeyDown(Keys.Down))
             {
-                _selected++;
-                if (_selected == _samples.Length)
-                    _selected--;
-            }
-            else if (keyboardState.IsKeyDown(Keys.Up) && !_prevKeyboardState.IsKeyDown(Keys.Up))
-            {
-                _selected--;
-                if (_selected < 0)
-                    _selected++;
-            }
-            else if (keyboardState.IsKeyDown(Keys.Enter) && !_prevKeyboardState.IsKeyDown(Keys.Enter))
-            {
-                var tmpGame = _samples[_selected].CreateSampleFunction();
-                tmpGame.OnLoad();
+                _selectedIndex++;
 
-                currentGame = tmpGame;
+                if (_selectedIndex == _samples.Length)
+                    _selectedIndex--;
+            }
+            else if (keyboardState.IsKeyDown(Keys.Up) && !_previousKeyboardState.IsKeyDown(Keys.Up))
+            {
+                _selectedIndex--;
+
+                if (_selectedIndex < 0)
+                    _selectedIndex++;
+            }
+            else if (keyboardState.IsKeyDown(Keys.Enter) && !_previousKeyboardState.IsKeyDown(Keys.Enter))
+            {
+                var sample = _samples[_selectedIndex].CreateSampleFunction();
+                sample.OnLoad();
+                CurrentSample = sample;
             }
 
-            _prevKeyboardState = keyboardState;
+            _previousKeyboardState = keyboardState;
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            if (currentGame != null)
+            if (CurrentSample != null)
             {
-                currentGame.OnDraw(gameTime);
+                CurrentSample.OnDraw(gameTime);
                 return;
             }
 
             GraphicsDevice.Clear(Color.DarkRed);
 
-            spriteBatch.Begin();
+            _spriteBatch.Begin();
+            _spriteBatch.DrawString(_bitmapFont, "Samples:", new Vector2(50, 50), new Color(Color.Black, 0.5f), wrapWidth: 750);
 
-            BitmapFontExtensions.DrawString(spriteBatch, _bitmapFont, "Samples:", new Vector2(50, 50), new Color(Color.Black, 0.5f), wrapWidth: 750);
-            for (int i = 0; i < _samples.Length; i++)
-                spriteBatch.DrawString(_bitmapFont, _samples[i].Name, new Vector2(50, 80 + i * _bitmapFont.LineHeight + 15), (i == _selected) ? Color.White * 1f : new Color(Color.Black, 0.5f), wrapWidth: 750);
+            for (var i = 0; i < _samples.Length; i++)
+                _spriteBatch.DrawString(_bitmapFont, _samples[i].Name, new Vector2(50, 80 + i * _bitmapFont.LineHeight + 15), (i == _selectedIndex) ? Color.White * 1f : new Color(Color.Black, 0.5f), wrapWidth: 750);
 
-            spriteBatch.End();
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
     }
 
-    class SampleMetadata
+    public class SampleMetadata
     {
         public SampleMetadata(string name, Func<SampleGame> createSampleFunction)
         {
