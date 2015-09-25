@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{FD190BF5-B90D-4371-BDC7-B910C7DFBBF8}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Samples.Extended</RootNamespace>
     <AssemblyName>Samples.Extended</AssemblyName>
@@ -48,7 +48,6 @@
     <Compile Include="Samples\ViewportAdaptersSample.cs" />
     <Compile Include="Samples\SpritesSample.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="SampleGame.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,73 +69,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bin\axe.xnb">
-      <Link>Content\axe.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\bg_sharbi.xnb">
-      <Link>Content\bg_sharbi.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\free-tileset.xnb">
-      <Link>Content\free-tileset.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\hills.xnb">
-      <Link>Content\hills.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\hills-1.xnb">
-      <Link>Content\hills-1.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\hills-2.xnb">
-      <Link>Content\hills-2.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\hills-3.xnb">
-      <Link>Content\hills-3.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\hills-4.xnb">
-      <Link>Content\hills-4.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\hills-clouds.xnb">
-      <Link>Content\hills-clouds.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\hills-sky.xnb">
-      <Link>Content\hills-sky.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\level01.xnb">
-      <Link>Content\level01.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\montserrat-32.xnb">
-      <Link>Content\montserrat-32.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\montserrat-32_0.xnb">
-      <Link>Content\montserrat-32_0.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\particle.xnb">
-      <Link>Content\particle.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\spike_ball.xnb">
-      <Link>Content\spike_ball.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\bin\vignette.xnb">
-      <Link>Content\vignette.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Content\Content.mgcb" />
     <None Include="Icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
