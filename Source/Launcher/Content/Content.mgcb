@@ -3,7 +3,7 @@
 
 /outputDir:../Content
 /intermediateDir:obj
-/platform:DesktopGL
+/platform:WindowsGL
 /config:
 /profile:Reach
 /compress:False
