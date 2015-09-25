@@ -64,10 +64,10 @@ namespace Samples.Extended.Samples
                 _camera.Move(new Vector2(cameraSpeed, 0) * deltaSeconds);
 
             if (keyboardState.IsKeyDown(Keys.R))
-                _camera.ZoomIn(zoomSpeed * deltaSeconds);
+                _camera.Zoom += zoomSpeed * deltaSeconds;
 
             if (keyboardState.IsKeyDown(Keys.F))
-                _camera.ZoomOut(zoomSpeed * deltaSeconds);
+                _camera.Zoom -= zoomSpeed * deltaSeconds;
 
             base.Update(gameTime);
         }
