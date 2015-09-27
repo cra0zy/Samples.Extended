@@ -91,10 +91,10 @@ namespace Samples.Extended.Samples
                 _camera.Rotation -= rotationSpeed * deltaTime;
 
             if (keyboardState.IsKeyDown(Keys.R))
-                _camera.Zoom += zoomSpeed * deltaTime;
+                _camera.ZoomIn(zoomSpeed * deltaTime);
 
             if (keyboardState.IsKeyDown(Keys.F))
-                _camera.Zoom -= zoomSpeed * deltaTime;
+                _camera.ZoomOut(zoomSpeed * deltaTime);
 
             _screenToWorldPosition = _camera.ScreenToWorld(new Vector2(mouseState.X, mouseState.Y));
 
