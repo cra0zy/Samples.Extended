@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Extended", "Samples.Extended\Samples.Extended.csproj", "{FD190BF5-B90D-4371-BDC7-B910C7DFBBF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game2", "Game2\Game2.csproj", "{5F6B7350-0684-4498-9508-A5E8EFA2CE62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher.Windows", "Launcher\Launcher.Windows.csproj", "{5F6B7350-0684-4498-9508-A5E8EFA2CE62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
