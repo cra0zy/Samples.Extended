@@ -3,13 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{FD190BF5-B90D-4371-BDC7-B910C7DFBBF8}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5F6B7350-0684-4498-9508-A5E8EFA2CE62}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Samples.Extended</RootNamespace>
-    <AssemblyName>Samples.Extended</AssemblyName>
+    <RootNamespace>Game2</RootNamespace>
+    <AssemblyName>Game2</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MonoGamePlatform>Linux</MonoGamePlatform>
+    <MonoGamePlatform>WindowsGL</MonoGamePlatform>
     <MonoGameContentBuilderExe>
     </MonoGameContentBuilderExe>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -20,8 +22,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>bin\WindowsGL\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -30,8 +32,8 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\WindowsGL\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -40,15 +42,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Samples\TiledMapsSample.cs" />
-    <Compile Include="Samples\BitmapFontsSample.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Samples\Camera2DSample.cs" />
-    <Compile Include="Samples\InputListenersSample.cs" />
-    <Compile Include="Samples\ViewportAdaptersSample.cs" />
-    <Compile Include="Samples\SpritesSample.cs" />
-    <Compile Include="Game1.cs" />
-    <Compile Include="SampleGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -64,20 +59,49 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
-    <Reference Include="NVorbis">
-      <HintPath>..\..\ThirdParty\MonoGame.Framework\NVorbis.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Icon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Content Include="Content\axe.png" />
+    <Content Include="Content\bg_sharbi.png" />
+    <Content Include="Content\free-tileset.png" />
+    <Content Include="Content\hills-1.png" />
+    <Content Include="Content\hills-2.png" />
+    <Content Include="Content\hills-3.png" />
+    <Content Include="Content\hills-4.png" />
+    <Content Include="Content\hills-clouds.png" />
+    <Content Include="Content\hills-sky.png" />
+    <Content Include="Content\hills.png" />
+    <Content Include="Content\montserrat-32_0.png" />
+    <Content Include="Content\particle.png" />
+    <Content Include="Content\spike_ball.png" />
+    <Content Include="Content\vignette.png" />
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Content\level01.tmx" />
+    <None Include="Content\montserrat-32.fnt" />
+    <None Include="Content\README.md" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Samples.Extended\Samples.Extended.csproj">
+      <Project>{fd190bf5-b90d-4371-bdc7-b910c7dfbbf8}</Project>
+      <Name>Samples.Extended</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
+  <Target Name="BeforeResolveReferences">
+    <CreateProperty Value="$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows;$(AssemblySearchPaths)">
+      <Output TaskParameter="Value" PropertyName="AssemblySearchPaths" />
+    </CreateProperty>
+  </Target>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

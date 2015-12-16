@@ -74,16 +74,16 @@ namespace Samples.Extended.Samples
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            //GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // you can either draw the entire map in one go
-            //_tiledMap.Draw(_camera);
+            _tiledMap.Draw(_camera);
 
             // or for more control, draw each layer separately
-            foreach (var layer in _tiledMap.Layers)
-            {
-                layer.Draw(_camera);
-            }
+            //foreach (var layer in _tiledMap.Layers)
+            //{
+            //    layer.Draw();
+            //}
 
             _spriteBatch.Begin();
             _spriteBatch.DrawString(_bitmapFont, "WASD/Arrows: move", new Vector2(5, 5), new Color(0.5f, 0.5f, 0.5f));

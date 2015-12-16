@@ -35,7 +35,7 @@ namespace Samples.Extended
         private void LoadDefaults()
         {
             Window.Title = "MonoGame.Extended Samples";
-            Window.Icon = new System.Drawing.Icon("Icon.ico");
+            //Window.Icon = new System.Drawing.Icon("Icon.ico");
             Window.AllowUserResizing = false;
             IsMouseVisible = true;
 

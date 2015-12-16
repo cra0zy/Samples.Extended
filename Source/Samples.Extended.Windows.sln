@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher.Windows", "Launcher\Launcher.Windows.csproj", "{720744B7-625F-4523-BA47-C917654FB514}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Extended", "Samples.Extended\Samples.Extended.csproj", "{FD190BF5-B90D-4371-BDC7-B910C7DFBBF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game2", "Game2\Game2.csproj", "{5F6B7350-0684-4498-9508-A5E8EFA2CE62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{720744B7-625F-4523-BA47-C917654FB514}.Debug|x86.ActiveCfg = Debug|x86
-		{720744B7-625F-4523-BA47-C917654FB514}.Debug|x86.Build.0 = Debug|x86
-		{720744B7-625F-4523-BA47-C917654FB514}.Release|x86.ActiveCfg = Release|x86
-		{720744B7-625F-4523-BA47-C917654FB514}.Release|x86.Build.0 = Release|x86
 		{FD190BF5-B90D-4371-BDC7-B910C7DFBBF8}.Debug|x86.ActiveCfg = Debug|x86
 		{FD190BF5-B90D-4371-BDC7-B910C7DFBBF8}.Debug|x86.Build.0 = Debug|x86
 		{FD190BF5-B90D-4371-BDC7-B910C7DFBBF8}.Release|x86.ActiveCfg = Release|x86
 		{FD190BF5-B90D-4371-BDC7-B910C7DFBBF8}.Release|x86.Build.0 = Release|x86
+		{5F6B7350-0684-4498-9508-A5E8EFA2CE62}.Debug|x86.ActiveCfg = Debug|x86
+		{5F6B7350-0684-4498-9508-A5E8EFA2CE62}.Debug|x86.Build.0 = Debug|x86
+		{5F6B7350-0684-4498-9508-A5E8EFA2CE62}.Release|x86.ActiveCfg = Release|x86
+		{5F6B7350-0684-4498-9508-A5E8EFA2CE62}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
